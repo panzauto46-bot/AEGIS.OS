@@ -11,7 +11,7 @@ const WALLETCONNECT_PROJECT_ID = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID |
 const config = getDefaultConfig({
   appName: 'Aegis.OS',
   projectId: WALLETCONNECT_PROJECT_ID,
-  chains: [base, baseSepolia],
+  chains: [baseSepolia, base],
   ssr: false,
   transports: {
     [base.id]: http(),

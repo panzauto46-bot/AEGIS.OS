@@ -9,7 +9,7 @@ interface PaymentModalProps {
   onPay: () => void;
 }
 
-const USDC_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; // Base network USDC
+const USDC_ADDRESS = '0x036CbD53842c5426634e7929541eC2318f3dCF7e'; // Base Sepolia USDC
 const AEGIS_WALLET = '0xAEG1S00000000000000000000000000000000000'; // Dummy PinionOS wallet
 
 const erc20Abi = [
