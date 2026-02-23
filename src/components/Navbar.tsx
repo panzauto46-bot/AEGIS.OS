@@ -1,4 +1,4 @@
-import { Shield, Menu, X } from 'lucide-react';
+import { Shield, Menu, X, Wallet, ChevronDown, LogOut, Copy } from 'lucide-react';
 import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
@@ -36,7 +36,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </span>
           </button>
 
-          // Desktop Nav
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <button
@@ -51,7 +51,91 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               </button>
             ))}
             <div className="ml-4">
-              <ConnectButton />
+              <ConnectButton.Custom>
+                {({
+                  account,
+                  chain,
+                  openAccountModal,
+                  openChainModal,
+                  openConnectModal,
+                  mounted,
+                }) => {
+                  const ready = mounted;
+                  const connected = ready && account && chain;
+
+                  return (
+                    <div
+                      {...(!ready && {
+                        'aria-hidden': true,
+                        style: {
+                          opacity: 0,
+                          pointerEvents: 'none' as const,
+                          userSelect: 'none' as const,
+                        },
+                      })}
+                    >
+                      {(() => {
+                        if (!connected) {
+                          return (
+                            <button
+                              onClick={openConnectModal}
+                              className="neon-button rounded-lg py-2 px-5 text-neon-cyan text-sm font-semibold flex items-center gap-2 cursor-pointer hover:shadow-lg hover:shadow-neon-cyan/20 transition-all"
+                            >
+                              <Wallet className="h-4 w-4" />
+                              Connect Wallet
+                            </button>
+                          );
+                        }
+
+                        if (chain.unsupported) {
+                          return (
+                            <button
+                              onClick={openChainModal}
+                              className="rounded-lg py-2 px-4 bg-danger-red/20 border border-danger-red/40 text-danger-red text-sm font-semibold cursor-pointer hover:bg-danger-red/30 transition-all"
+                            >
+                              Wrong Network
+                            </button>
+                          );
+                        }
+
+                        return (
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={openChainModal}
+                              className="glass rounded-lg py-2 px-3 text-xs font-mono text-white/60 flex items-center gap-1.5 cursor-pointer hover:bg-white/10 transition-all border border-white/5"
+                            >
+                              {chain.hasIcon && chain.iconUrl && (
+                                <img
+                                  alt={chain.name ?? 'Chain'}
+                                  src={chain.iconUrl}
+                                  className="h-4 w-4 rounded-full"
+                                />
+                              )}
+                              <span className="text-matrix-green">{chain.name}</span>
+                              <ChevronDown className="h-3 w-3 text-white/30" />
+                            </button>
+
+                            <button
+                              onClick={openAccountModal}
+                              className="glass rounded-lg py-2 px-4 text-sm font-mono flex items-center gap-2 cursor-pointer hover:bg-white/10 transition-all neon-border"
+                            >
+                              <div className="h-2 w-2 rounded-full bg-matrix-green animate-pulse" />
+                              <span className="text-neon-cyan font-semibold">
+                                {account.displayName}
+                              </span>
+                              {account.displayBalance && (
+                                <span className="text-white/40 text-xs hidden lg:inline">
+                                  {account.displayBalance}
+                                </span>
+                              )}
+                            </button>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  );
+                }}
+              </ConnectButton.Custom>
             </div>
           </div>
 
@@ -83,6 +167,43 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               {item.label}
             </button>
           ))}
+          <div className="pt-2 border-t border-white/5">
+            <ConnectButton.Custom>
+              {({
+                account,
+                chain,
+                openAccountModal,
+                openConnectModal,
+                mounted,
+              }) => {
+                const ready = mounted;
+                const connected = ready && account && chain;
+
+                if (!connected) {
+                  return (
+                    <button
+                      onClick={openConnectModal}
+                      className="w-full neon-button rounded-lg py-3 px-5 text-neon-cyan text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Wallet className="h-4 w-4" />
+                      Connect Wallet
+                    </button>
+                  );
+                }
+
+                return (
+                  <button
+                    onClick={openAccountModal}
+                    className="w-full glass rounded-lg py-3 px-4 text-sm font-mono flex items-center justify-center gap-2 cursor-pointer neon-border"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-matrix-green animate-pulse" />
+                    <span className="text-neon-cyan">{account.displayName}</span>
+                    <span className="text-white/40 text-xs">{account.displayBalance}</span>
+                  </button>
+                );
+              }}
+            </ConnectButton.Custom>
+          </div>
         </div>
       )}
     </nav>
