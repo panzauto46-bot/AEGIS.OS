@@ -23,7 +23,7 @@ export function App() {
       {currentPage === 'landing' && (
         <LandingPage onNavigate={(page) => handleNavigate(page)} />
       )}
-      {currentPage === 'audit' && <AuditPage />}
+      {currentPage === 'audit' && <AuditPage onBack={() => handleNavigate('landing')} />}
       {currentPage === 'transparency' && <TransparencyPage />}
     </div>
   );

@@ -1,4 +1,4 @@
-import { Shield, Menu, X, Wallet, ChevronDown, LogOut, Copy } from 'lucide-react';
+import { Shield, Menu, X, Wallet, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 

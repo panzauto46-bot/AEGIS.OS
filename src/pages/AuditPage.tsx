@@ -53,7 +53,11 @@ interface IERC20 {
 
 type AuditStage = 'input' | 'processing' | 'report';
 
-export function AuditPage() {
+interface AuditPageProps {
+  onBack: () => void;
+}
+
+export function AuditPage({ onBack }: AuditPageProps) {
   const [code, setCode] = useState('');
   const [stage, setStage] = useState<AuditStage>('input');
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -259,7 +263,7 @@ export function AuditPage() {
       {/* Payment Modal */}
       <PaymentModal
         isOpen={!isUnlocked}
-        onClose={() => { }} // User can't close it, they must pay or go back. Wait, we don't have a go back button in the modal. We'll leave it as is, or they use Navbar to navigate away.
+        onClose={onBack}
         onPay={handlePay}
       />
     </div>
