@@ -10,7 +10,7 @@ interface PaymentModalProps {
 }
 
 const USDC_ADDRESS = '0x036CbD53842c5426634e7929541eC2318f3dCF7e'; // Base Sepolia USDC
-const AEGIS_WALLET = '0xAEG1S00000000000000000000000000000000000'; // Dummy PinionOS wallet
+const AEGIS_WALLET = '0xFEE547941c3E3d3D66dC2e47ee9c16879E870F9b'; // AEGIS Treasury Wallet
 
 const erc20Abi = [
   {
