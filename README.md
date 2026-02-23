@@ -332,9 +332,17 @@ A Node.js background worker that:
 
 ## 📸 Screenshots
 
-| Landing Page | Audit Workspace | Security Report |
-|---|---|---|
-| Dark-mode hero with particle animations | Code editor with syntax highlighting | AI-generated vulnerability analysis |
+### 1. Landing Page
+*Dark-mode hero with interactive particle animations and wallet integration.*
+<img src="assets/landing_page.jpeg" alt="Landing Page" width="100%">
+
+### 2. Audit Workspace
+*Integrated code editor with live syntax highlighting and AI engine connectivity.*
+<img src="assets/audit_workspace.jpeg" alt="Audit Workspace" width="100%">
+
+### 3. Security Report
+*AI-generated vulnerability analysis with actionable recommendations & on-chain proof.*
+<img src="assets/security_report.jpeg" alt="Security Report" width="100%">
 
 ---
 
