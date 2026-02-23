@@ -48,6 +48,23 @@ Unlike traditional audit tools that require manual review and centralized paymen
 
 > *" Built for the PinionOS Hackathon — proving that AI agents can be economically autonomous."*
 
+### 🔌 PinionOS Integration
+
+AEGIS.OS is **built on PinionOS infrastructure** (`pinion-os` npm package). Here's how we use it:
+
+| PinionOS Feature | AEGIS.OS Usage | File |
+|---|---|---|
+| `PinionClient` | Initialize SDK with wallet for x402 micropayments | `api/audit.ts`, `scripts/autonomy_loop.ts` |
+| `skills.balance()` | Verify user wallet balance before audit | `api/audit.ts` |
+| `skills.price('ETH')` | Fetch real-time ETH price for report context | `api/audit.ts` |
+| `skills.tx(hash)` | Verify incoming USDC payment transactions | `scripts/autonomy_loop.ts` |
+| `skills.fund(addr)` | Check AEGIS treasury funding status | `scripts/autonomy_loop.ts` |
+| x402 Protocol | Payment infrastructure on Base L2 | All on-chain operations |
+
+```bash
+npm install pinion-os
+```
+
 ---
 
 ## ✨ Key Features
